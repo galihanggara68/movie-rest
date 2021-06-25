@@ -5,14 +5,14 @@ var Movie = require("../models").Movie;
 
 router.get("/", function (req, res, next) {
 	Movie.findAll()
-		.then((result) => res.send(result.map(r => ({...r, year: new Date(year).getYear()}))))
+		.then((result) => res.send(result))
 		.catch((e) => next({ message: e, status: 500 }));
 });
 
 router.get("/:id(\\d+)", function (req, res, next) {
 	let id = req.params.id;
 	Movie.findByPk(id)
-		.then((result) => res.send({...result, year: new Date(year).getYear()}))
+		.then((result) => res.send(result))
 		.catch((e) => next({ message: e, status: 500 }));
 });
 
